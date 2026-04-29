@@ -20,6 +20,11 @@ const guestSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    instaId: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     place: {
       type: String,
       required: true,

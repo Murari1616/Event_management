@@ -3,8 +3,16 @@ const guestRepo = require("../repositories/guestRepo");
 
 // === Create Guest ===
 async function createGuest(guestData) {
-  const { name, age, gender, phoneNumber, place, talent, description } =
-    guestData;
+  const {
+    name,
+    age,
+    gender,
+    phoneNumber,
+    instaId,
+    place,
+    talent,
+    description,
+  } = guestData;
 
   try {
     if (
@@ -12,6 +20,7 @@ async function createGuest(guestData) {
       !age ||
       !gender ||
       !phoneNumber ||
+      !instaId ||
       !place ||
       !talent ||
       !description
@@ -24,6 +33,7 @@ async function createGuest(guestData) {
       age,
       gender,
       phoneNumber,
+      instaId,
       place,
       talent,
       description,
