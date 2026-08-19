@@ -14,7 +14,7 @@ const guestSchema = new mongoose.Schema(
     gender: {
       type: String,
       required: true,
-      enum: ["King", "Queen", "Other"],
+      enum: ["King", "Queen", "Other","Couple"],
     },
     phoneNumber: {
       type: String,
