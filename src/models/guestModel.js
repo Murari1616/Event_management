@@ -40,6 +40,10 @@ const guestSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    approve:{
+      type:Boolean,
+      default:false,
+    },
     payment: {
       type: Boolean,
       default: false,
