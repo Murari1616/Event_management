@@ -25,6 +25,7 @@ const updateGuest = async (id, guestData) => {
   return updatedGuest;
 };
 
+
 // === Soft delete guest (set status to inactive) ===
 const deleteGuest = async (id) => {
   const guest = await Guest.findByIdAndDelete(id);
@@ -48,7 +49,12 @@ const getGuestById = async (id) => {
 
 // === Get all guests ===
 const getAllGuests = async () => {
-  return await Guest.find().sort({ createdAt: -1 });
+  return await Guest.find()
+    .populate({
+      path: "eventId",
+      select: "eventName",
+    })
+    .sort({ createdAt: -1 });
 };
 
 module.exports = {
