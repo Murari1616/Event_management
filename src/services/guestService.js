@@ -13,11 +13,17 @@ async function createGuest(guestData) {
     place,
     talent,
     description,
+    amount,
+    razorpayOrderId,
+    razorpayPaymentId,
+    razorpaySignature,
+    approve,
+    payment,
   } = guestData;
 
   try {
     if (
-      !eventId||
+      !eventId ||
       !name ||
       !age ||
       !gender ||
@@ -25,29 +31,53 @@ async function createGuest(guestData) {
       !instaId ||
       !place ||
       !talent ||
-      !description
+      !description ||
+      amount === undefined ||
+      !razorpayOrderId ||
+      !razorpayPaymentId ||
+      !razorpaySignature
     ) {
-      throw new AppError("All fields are required", 400);
+      throw new AppError(
+        "All fields are required",
+        400
+      );
     }
 
-    const guest = await guestRepo.createGuest({
-      eventId,
-      name,
-      age,
-      gender,
-      phoneNumber,
-      instaId,
-      place,
-      talent,
-      description,
-    });
+    const guest =
+      await guestRepo.createGuest({
+        eventId,
+        name,
+        age,
+        gender,
+        phoneNumber,
+        instaId,
+        place,
+        talent,
+        description,
+
+        amount,
+
+        razorpayOrderId,
+        razorpayPaymentId,
+        razorpaySignature,
+
+        approve: approve ?? false,
+        payment: payment ?? false,
+      });
 
     return {
       data: guest,
     };
   } catch (error) {
-    if (error instanceof AppError) throw error;
-    throw new AppError("Failed to create guest", 500, error);
+    if (error instanceof AppError) {
+      throw error;
+    }
+
+    throw new AppError(
+      "Failed to create guest",
+      500,
+      error
+    );
   }
 }
 
