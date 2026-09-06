@@ -4,7 +4,7 @@ const guestRepo = require("../repositories/guestRepo");
 // === Create Guest ===
 async function createGuest(guestData) {
   const {
-    productId,
+    eventId,
     name,
     age,
     gender,
@@ -17,7 +17,7 @@ async function createGuest(guestData) {
 
   try {
     if (
-      !productId||
+      !eventId||
       !name ||
       !age ||
       !gender ||
@@ -31,7 +31,7 @@ async function createGuest(guestData) {
     }
 
     const guest = await guestRepo.createGuest({
-      productId,
+      eventId,
       name,
       age,
       gender,
